@@ -9,5 +9,19 @@
 <body>
 <h1>Users Page</h1>
 <h2>The current user is : {{ $user }}</h2>
+The current UNIX timestamp is {{ time() }}. <br>
+Hello, {!! $user !!}. <br>
+
+@if ( $user === 'Abdou')
+I have one record!
+@elseif ($user == 'Sidi')
+I have multiple records!
+@else
+I don't have any records!
+@endif
+<br>
+@unless (Auth::check())
+You are not signed in.
+@endunless
 </body>
 </html>
