@@ -26,7 +26,7 @@ Route::view('/hello1', 'greeting.hello1');
 Route::view('/hello2', 'greeting.hello2', ['name' => 'Taylor']);
 
 Route::get('/user', function () {
-    $name = 'ju';
+    $name = 'Abdou';
     return view('users.index', ['user' => $name]);
 });
 
