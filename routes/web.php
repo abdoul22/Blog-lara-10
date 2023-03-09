@@ -1,17 +1,18 @@
 <?php
 
+use App\Http\Controllers\EssaController;
+use App\Http\Controllers\MohamedController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('mohamed/index', [MohamedController::class, 'index']);
+Route::get('mohamed/show', [MohamedController::class, 'show']);
+Route::get('mohamed/edit', [MohamedController::class, 'edit']);
+Route::get('mohamed/create', [MohamedController::class, 'create']);
+
+Route::get('essa/index', [EssaController::class, "index"]);
+Route::get('essa/show', [EssaController::class, "show"]);
+Route::get('essa/edit', [EssaController::class, "edit"]);
+Route::get('essa/create', [EssaController::class, "create"]);
 
 Route::get('/', function () {
     return view('welcome');
