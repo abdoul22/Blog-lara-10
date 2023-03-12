@@ -12,8 +12,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::latest()->paginate(5);
-        return view('products.index', compact('product'))
+        $products = Product::latest()->paginate(5);
+        return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
 
     }
@@ -34,16 +34,16 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'details' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,svg,gif'
+            'image' => 'required'
         ]);
         $input = $request->all();
         if ($image = $request->file('image')) {
-            $imagePath = '/image/';
+            $imagePath = 'images';
             $imagenameext = date('YmdHis').'.'.$image->getClientOriginalExtension();
             $image->move($imagePath, $imagenameext);
             $input['image'] = $imagenameext;
         }
-        Product::create('input');
+        Product::create($input);
         return redirect()->route('products.index')
             ->with('success', 'Product created successfuly');
     }
@@ -77,7 +77,7 @@ class ProductController extends Controller
 
          $input = $request->all();
         if ($image = $request->file('image')) {
-            $imagePath = '/image/';
+            $imagePath = 'image/';
             $imagenameext = date('YmdHis').'.'.$image->getClientOriginalExtension();
             $image->move($imagePath, $imagenameext);
             $input['image'] = $imagenameext;
@@ -96,5 +96,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
+        return redirect()->route('products.index')
+        ->with("", 'Product deleted successfuly');
     }
 }

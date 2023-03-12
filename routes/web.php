@@ -5,7 +5,7 @@ use App\Http\Controllers\MohamedController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
-Route::resource('product',ProductController::class);
+Route::resource('products',ProductController::class);
 
 Route::get('mohamed/index', [MohamedController::class, 'index']);
 Route::get('mohamed/show', [MohamedController::class, 'show']);
