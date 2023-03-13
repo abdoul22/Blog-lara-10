@@ -9,7 +9,7 @@
         </div>
     </div>
     <br>
-    @if ($message = Session::get('succses'))
+    @if ($message = Session::get('success'))
         <div class="alert alert-success" role="alert">
            {{ $message }}
         </div>
@@ -28,7 +28,7 @@
             @foreach ($products as $product )
             <tr>
                 <td>{{ $product->id }}</td>
-                <td><img src="/images/{{ $product->image }}" alt="" width="300px"></td>
+                <td><img src="/images/{{ $product->image }}" alt="" height='200px' width="300px"></td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->details }}</td>
                 <td>
@@ -44,7 +44,9 @@
             @endforeach
         </tbody>
     </table>
+    <div style="display:flex; justify-content:space-around; align-item:center;">
     {{ $products->links() }}
+    </div>
 </div>
 
 @endsection

@@ -34,7 +34,7 @@ class ProductController extends Controller
         $request->validate([
             'name' => 'required',
             'details' => 'required',
-            'image' => 'required'
+            'image' => 'required|mimes:jpeg,png,gif,svg|max:2048'
         ]);
         $input = $request->all();
         if ($image = $request->file('image')) {
@@ -87,7 +87,7 @@ class ProductController extends Controller
         $product->update($input);
 
         return redirect()->route('products.index')
-        ->with("",'Product updated successfuly');
+        ->with("success",'Product updated successfuly');
     }
 
     /**
@@ -97,6 +97,6 @@ class ProductController extends Controller
     {
         $product->delete();
         return redirect()->route('products.index')
-        ->with("", 'Product deleted successfuly');
+        ->with("success", 'Product deleted successfuly');
     }
 }

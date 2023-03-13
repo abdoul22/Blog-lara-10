@@ -49,3 +49,7 @@ Route::get('/user/{name?}', function ($name = 'John') {
 
     return view('user.userparams', [$name]);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
