@@ -10,6 +10,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        //$this->middleware('auth')->except(['index','show']);
+        $this->middleware('auth')->only('edit','create','delete','update','store');
+    }
     public function index()
     {
         $products = Product::latest()->paginate(5);

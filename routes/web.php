@@ -5,6 +5,8 @@ use App\Http\Controllers\MohamedController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
+
+Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
 Route::resource('products',ProductController::class);
 
 Route::get('mohamed/index', [MohamedController::class, 'index']);
@@ -18,7 +20,7 @@ Route::get('essa/edit', [EssaController::class, "edit"]);
 Route::get('essa/create', [EssaController::class, "create"]);
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('products.index');
 });
 
 Route::get('/greeting', function () {
@@ -51,5 +53,3 @@ Route::get('/user/{name?}', function ($name = 'John') {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,11 +3,6 @@
 @section('content')
 <div class="container">
     <br>
-    <div class="row align-items-start">
-        <div class="col">
-            <a class="btn btn-primary" href="{{ route('products.create') }}">Create</a>
-        </div>
-    </div>
     <br>
     @if ($message = Session::get('success'))
         <div class="alert alert-success" role="alert">
@@ -32,13 +27,16 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->details }}</td>
                 <td>
+                    @auth
+
                     <form action="{{ route('products.destroy', $product->id) }}" method='post'>
                         @csrf
                         @method('DELETE')
                         <button type="submit" >Delete</button>
                     </form>
-                    <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">show</a>
                     <a class="btn btn-primary" href="{{ route('products.edit', $product->id) }}">edit</a>
+                    @endauth
+                    <a class="btn btn-info" href="{{ route('products.show', $product->id) }}">show</a>
                 </td>
             </tr>
             @endforeach
